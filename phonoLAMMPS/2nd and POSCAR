@@ -1,0 +1,8 @@
+units           metal
+boundary        p p p
+atom_style      atomic
+read_data       opt.data
+mass            * 12.0107
+pair_style      deeepmd graph.pb
+pair_coeff      
+neighbor        0.3 bin
