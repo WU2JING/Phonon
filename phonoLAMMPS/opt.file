@@ -1,0 +1,21 @@
+#initiate simulation
+boundary     p p p
+units        metal
+atom_style   atomic
+
+# geometry
+read_data	 data.pos
+
+# deepmd potential
+pair_style   deepmd graph.pb
+pair_coeff   
+neighbor     0.2 nsq
+neigh_modify every 1 delay 0 check yes
+
+
+fix                 1 all box/relax x 0.0 y 0.0 z 0.0  
+min_style            cg
+minimize            0 1.0e-10 5000000 1000000
+dump                0 all custom 1 LZ.lmc id type  mass x y z 
+dump_modify         0 sort id 
+run                 0
